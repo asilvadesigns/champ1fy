@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block title %} Search Your Champs {% endblock %} {% block content %}
+
+<h1 class="title">{{stuff_at_top}}</h1>
+
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <input
+        class="input"
+        type="text"
+        name="name"
+        placeholder="SEARCH FOR CHAMPS"
+      />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <a class="button is-dark" href="{% url 'champion_list' %}">Clear Search</a>
+</form>
+<div class="gallery">
+  {% for champion in champs %}
+  <div class="card">
+    <a href="{% url 'champion_detail' champion.pk %}">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{champion.image}}" alt="{{champion.champion}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{champion.champion}}</p>
+      </div>
+    </a>
+  </div>
+  {% empty %}
+  <h1>No champions found matching your query</h1>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block title %} Delete {{champion.champion}}?{% endblock %} {% block content %}
+<h1 class="title pt-5">Sure you wanna DELETE {{champion.champion}}?</h1>
+<form method="post">
+  {% csrf_token %}
+  <div class="buttons">
+    <input class="button is-danger" type="submit" value="Confirm" />
+    <a class="button is-primary" href="{% url 'champion_detail' champion.pk %}"
+      >Cancel</a
+    >
+  </div>
+</form>
+{% endblock %}
